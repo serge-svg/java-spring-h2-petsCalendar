@@ -2,24 +2,28 @@ package svg.tutorialspoint.petscalendar.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
 @Entity
-@Table
+@Table(name = "APPOINTMENTS")
 public class Appointment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private Integer id;
+    @ManyToOne
+    @JoinColumn(name = "PET_ID")
+    private Pet pet;
     @Column
-    private int petId;
-    @Column
-    private LocalDate starDate;
-    @Column
-    private LocalDate endDate;
+    private String description;
+    @Column(name = "START_DATE")
+    private Timestamp starDate;
+    @Column(name = "END_DATE")
+    private Timestamp endDate;
     @Column
     private String address;
     @Column
-    private double price;
+    private BigDecimal price;
 
 }
